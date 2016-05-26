@@ -48,8 +48,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(584, 262);
             this.Controls.Add(this.remindTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form4";
-            this.Text = "Form4";
+            this.Text = "AgedPeopleHelper_0.1";
             this.ResumeLayout(false);
 
         }

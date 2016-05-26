@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>grandma_square.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CUETools.Codecs">
       <HintPath>C:\Users\Liuba\Desktop\SpeachRecognition\SpeechRecognizer\libs\CUETools.Codecs.dll</HintPath>
@@ -155,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\isntRecording.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="grandma_square.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

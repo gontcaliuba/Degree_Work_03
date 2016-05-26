@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace DegreeWork_01
         public void commandsHandler(string command)
         {
             if (command == null) return;
-            switch(command.ToLower())
+            string caseCommand = command.ToLower();
+            switch (caseCommand)
             {
                  // Взаимодействия с системой
 
@@ -101,6 +103,13 @@ namespace DegreeWork_01
                         formContacts.ShowDialog();
                         break;
                     }
+                default:
+                    {
+                        var request = command;
+                        Process.Start("opera.exe", "https://www.google.ru/?gws_rd=ssl#newwindow=1&q=" + Uri.EscapeUriString(request));
+                        break;
+                    }
+
             }
         }
 
