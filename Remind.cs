@@ -22,5 +22,26 @@ namespace DegreeWork_01
             this.dateTime = dateTime;
             this.message = message;
         }
+
+        public int getId()
+        {
+            return id;
+        }
+
+        public string getMessage()
+        {
+            return message;
+        }
+
+        public DateTime getDateTime()
+        {
+            return dateTime;
+        }
+
+        public void setId(int id)
+        {
+            if (id < 0) return;
+            this.id = id;
+        }
     }
 }

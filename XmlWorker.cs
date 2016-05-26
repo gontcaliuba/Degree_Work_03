@@ -10,8 +10,10 @@ using System.Xml.Serialization;
 
 namespace DegreeWork_01
 {
+    [Serializable]
     public class XmlWorker
     {
+
         public string extractLink(int idTown)
         {
             XmlDocument xml = new XmlDocument();

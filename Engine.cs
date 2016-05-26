@@ -11,10 +11,11 @@ namespace DegreeWork_01
         SkypeControl skypeControl = new SkypeControl();
         BrowserControl browserControl = new BrowserControl();
         SystemControl systemControl = new SystemControl();
-        RemindRange remindRange = new RemindRange("Reminds.xml");
+        RemindRange remindRange = new RemindRange();
 
         public void commandsHandler(string command)
         {
+            if (command == null) return;
             switch(command.ToLower())
             {
                  // Взаимодействия с системой
@@ -66,39 +67,59 @@ namespace DegreeWork_01
 
                 case "добавить напоминание":
                     {
-
+                        Form3 remindsForm = new Form3();
                         break;
                     }
                 case "удалить напоминание":
                     {
+                        Form4 remindListForm = new Form4();
                         break;
                     }
 
                     //Взаимодействия со скайпом
-                case "открыть Skype":
+                case "открыть skype":
                     {
                         skypeControl.startSkype();
                         break;
                     }
-                case "Закрыть Skype":
+                case "закрыть skype":
                     {
                         skypeControl.stopSkype();
                         break;
                     }
                 case "позвонить":
                     {
-                        Form2 formContacts = new Form2();
+                        skypeControl.startSkype();
+                        Form2 formContacts = new Form2(false);
                         formContacts.ShowDialog();
                         break;
                     }
                 case "видеозвонок":
                     {
-                        Form2 formContacts = new Form2();
+                        skypeControl.startSkype();
+                        Form2 formContacts = new Form2(true);
                         formContacts.ShowDialog();
                         break;
                     }
-
             }
+        }
+
+        public void skypeCalls(bool isVideo, string name)
+        {
+            if (isVideo) skypeControl.videoCall(name);
+            else skypeControl.call(name);
+        }
+        
+        public void deleteRemind(Remind remind)
+        {
+            RemindRange allReminds = new RemindRange();
+            allReminds.removeMessage(remind.getId());
+        }
+
+        public void addRemind(Remind remind)
+        {
+            RemindRange allReminds = new RemindRange();
+            allReminds.addMessage(remind.getDateTime(), remind.getMessage());
         }
     }
 }

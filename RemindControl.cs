@@ -27,11 +27,11 @@ namespace DegreeWork_01
             {
                 Remind remind = remindRange.remindList[i];
                 DateTime current_time = DateTime.Now;
-                DateTime remind_time = remind.dateTime;
+                DateTime remind_time = remind.getDateTime();
                 TimeSpan delta = current_time - remind_time;
                 if ((delta.Seconds >= 0) && (delta.Seconds < 60))
                 {
-                    System.Windows.Forms.MessageBox.Show(remind.message);
+                    System.Windows.Forms.MessageBox.Show(remind.getMessage());
                     remindRange.remindList.RemoveAt(i);
                 }
             }

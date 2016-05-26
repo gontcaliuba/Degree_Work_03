@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.RemindMessage = new System.Windows.Forms.RichTextBox();
             this.dateAndTime = new System.Windows.Forms.DateTimePicker();
+            this.timeList = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // RemindMessage
             // 
             this.RemindMessage.Location = new System.Drawing.Point(43, 91);
             this.RemindMessage.Name = "RemindMessage";
+            this.RemindMessage.ReadOnly = true;
             this.RemindMessage.Size = new System.Drawing.Size(194, 141);
             this.RemindMessage.TabIndex = 0;
             this.RemindMessage.Text = "";
@@ -46,10 +49,22 @@
             this.dateAndTime.Name = "dateAndTime";
             this.dateAndTime.Size = new System.Drawing.Size(194, 20);
             this.dateAndTime.TabIndex = 1;
+            this.dateAndTime.ValueChanged += new System.EventHandler(this.dateAndTime_ValueChanged);
+            // 
+            // timeList
+            // 
+            this.timeList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.timeList.FormattingEnabled = true;
+            this.timeList.Location = new System.Drawing.Point(279, 37);
+            this.timeList.Name = "timeList";
+            this.timeList.Size = new System.Drawing.Size(121, 21);
+            this.timeList.TabIndex = 2;
             // 
             // Form3
             // 
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(444, 262);
+            this.Controls.Add(this.timeList);
             this.Controls.Add(this.dateAndTime);
             this.Controls.Add(this.RemindMessage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -64,6 +79,7 @@
 
         private System.Windows.Forms.RichTextBox RemindMessage;
         private System.Windows.Forms.DateTimePicker dateAndTime;
+        private System.Windows.Forms.ComboBox timeList;
 
     }
 }

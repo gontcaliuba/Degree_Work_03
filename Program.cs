@@ -65,10 +65,10 @@ namespace DegreeWork_01
 
             RemindControl remC = new RemindControl(range);*/
 
-            Application.Run(new Form1());
-            //Application.Run(new Form2());
-            //Application.Run(new Form3());
-            
+            //Application.Run(new Form1());
+            Application.Run(new Form4());
+
+
             
             /*
             var stream = new MemoryStream(File.ReadAllBytes("01.wav"));

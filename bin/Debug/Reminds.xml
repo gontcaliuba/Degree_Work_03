@@ -3,28 +3,23 @@
   <remindList>
     <Remind>
       <id>0</id>
-      <dateTime>2016-05-09T23:06:00</dateTime>
-      <message>hi</message>
+      <dateTime>2016-05-05T00:00:00</dateTime>
+      <message>hihihi</message>
     </Remind>
     <Remind>
       <id>1</id>
-      <dateTime>2016-05-09T23:06:00</dateTime>
-      <message>hi</message>
+      <dateTime>2016-05-05T00:00:00</dateTime>
+      <message>hohoho</message>
     </Remind>
     <Remind>
       <id>2</id>
-      <dateTime>2016-05-09T23:06:00</dateTime>
-      <message>hi</message>
+      <dateTime>2016-05-05T00:00:00</dateTime>
+      <message>hihihi</message>
     </Remind>
     <Remind>
       <id>3</id>
-      <dateTime>2016-05-09T23:06:00</dateTime>
-      <message>hi</message>
-    </Remind>
-    <Remind>
-      <id>4</id>
-      <dateTime>2016-05-09T23:06:00</dateTime>
-      <message>hi</message>
+      <dateTime>2016-05-05T00:00:00</dateTime>
+      <message>hohoho</message>
     </Remind>
   </remindList>
 </RemindRange>
