@@ -85,17 +85,16 @@ namespace DegreeWork_01
         {
             var stream = new MemoryStream(File.ReadAllBytes("01.wav"));
             string result = SpeechRecognizer.WavStreamToGoogle(stream);
-            string command = JsonWorker.Convert(result);
-            if (command == null)
+            int remindId = JsonWorker.getNumber(result);
+            if (remindId == -1)
             {
                 return;
             }
-            int remindId;
             // Проверяем, число ли в строке, на выходе значение для remindId
-            if (int.TryParse(command, out remindId) == false) return;
-            Form5 deleteForm = new Form5("Вы действительно хотите удалить напоминание под номером " + remindId.ToString(),
+            Form5 deleteForm = new Form5("Вы действительно хотите удалить напоминание под номером " + remindId.ToString() + "? \nНажмите Enter для удаления.\nНажмите пробел для отмены.",
                 reminds.getRemindById(remindId), true);
             deleteForm.ShowDialog();
+            this.Close();
         }
         //Начинаем запись
         private void start()

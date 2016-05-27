@@ -25,6 +25,9 @@ namespace DegreeWork_01
         public Form1()
         {
             InitializeComponent();
+
+            RemindControl remindChecking = new RemindControl();
+
             this.KeyDown += Form1_KeyDown;
             this.KeyUp += Form1_KeyUp;
         }
@@ -125,6 +128,16 @@ namespace DegreeWork_01
             Image myimage = new Bitmap("isntRecording.jpg");
             this.BackgroundImage = myimage;
             stop();
+        }
+
+        private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void свернутьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

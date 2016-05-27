@@ -37,9 +37,20 @@ namespace DegreeWork_01
                         systemControl.changeLanguage("ru");
                         break;
                     }
+                case "сменить язык на английский":
+                    {
+                        systemControl.changeLanguage("en");
+                        break;
+                    }
+                case "сменить язык на румынский":
+                    {
+                        systemControl.changeLanguage("ro");
+                        break;
+                    }
                 case "сделать снимок":
                     {
                         systemControl.makeScreenImage();
+                        systemControl.openFolderIm();
                         break;
                     }
 
@@ -70,11 +81,13 @@ namespace DegreeWork_01
                 case "добавить напоминание":
                     {
                         Form3 remindsForm = new Form3();
+                        remindsForm.ShowDialog();
                         break;
                     }
                 case "удалить напоминание":
                     {
                         Form4 remindListForm = new Form4();
+                        remindListForm.ShowDialog();
                         break;
                     }
 

@@ -54,10 +54,11 @@
             // timeList
             // 
             this.timeList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.timeList.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.timeList.FormattingEnabled = true;
             this.timeList.Location = new System.Drawing.Point(279, 37);
             this.timeList.Name = "timeList";
-            this.timeList.Size = new System.Drawing.Size(121, 21);
+            this.timeList.Size = new System.Drawing.Size(121, 23);
             this.timeList.TabIndex = 2;
             // 
             // Form3
@@ -72,6 +73,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgedPeopleHelper_0.1";
             this.ResumeLayout(false);
 

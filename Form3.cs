@@ -116,6 +116,7 @@ namespace DegreeWork_01
             setData(remind);
             Form5 saveForm = new Form5("Сохранить напоминание?\nНажмите Enter для сохранения.\nНажмите пробел для отмены.", remind, false);
             saveForm.ShowDialog();
+            this.Close();
         }
         //Начинаем запись
         private void start()

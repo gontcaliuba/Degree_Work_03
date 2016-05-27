@@ -36,12 +36,16 @@ namespace DegreeWork_01
            do
            {
                if (call.Status == TCallStatus.clsBusy
-                  || call.Status == TCallStatus.clsCancelled
                   || call.Status == TCallStatus.clsFailed
                   || call.Status == TCallStatus.clsMissed
-                  || call.Status == TCallStatus.clsRefused)
+                  || call.Status == TCallStatus.clsCancelled)
                    return false;
-
+               if (call.Status == TCallStatus.clsRefused)
+               {
+                   //Пользователь отклонил звонок
+                   MessageBox.Show("Пользователь отклонил звонок");
+                   return true;
+               }
                Thread.Sleep(10);
            } while (call.Status != TCallStatus.clsInProgress);
 
@@ -51,17 +55,22 @@ namespace DegreeWork_01
        }
       public void call(string name)
        {
-           while (tryCall(name, false) == false)
+          //Timeout для звонка - 20 сек
+           for (int i = 0; i < 20; i++)
            {
-               Console.WriteLine("Подождите, устанавливается связь");
+               bool isCalling = tryCall(name, false);
+               if (isCalling == true) break;
+               Thread.Sleep(1000);
            }
        }
 
        public void videoCall(string name)
       {
-          while (tryCall(name, true) == false)
+          for (int i = 0; i < 20; i++)
           {
-              Console.WriteLine("Подождите, устанавливается связь");
+              bool isCalling = tryCall(name, true);
+              if (isCalling == true) break;
+              Thread.Sleep(1000);
           }
       }
        public void stopSkype()

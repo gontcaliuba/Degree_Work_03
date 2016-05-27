@@ -82,15 +82,13 @@ namespace DegreeWork_01
         {
             var stream = new MemoryStream(File.ReadAllBytes("01.wav"));
             string result = SpeechRecognizer.WavStreamToGoogle(stream);
-            string command = JsonWorker.Convert(result);
+            int nameId = JsonWorker.getNumber(result);
             Engine eng = new Engine();
-            if (command == null)
+            if (nameId == -1)
             {
                 return;
             }
-            int nameId;
             // Проверяем, число ли в строке, на выходе значение для intId
-            if (int.TryParse(command, out nameId) == false) return;
             eng.skypeCalls(isVideoCall, contactsList.getNameById(nameId));
             this.Close();
         }

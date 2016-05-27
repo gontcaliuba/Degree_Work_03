@@ -22,7 +22,7 @@ namespace DegreeWork_01
            Graphics graphics = Graphics.FromImage(printscreen as Image);
            graphics.CopyFromScreen(0, 0, 0, 0, printscreen.Size);
            name = DateTime.Now.ToString();
-           printscreen.Save(@"D:\ScreenIm\printScre.jpg", ImageFormat.Jpeg);
+           printscreen.Save(@"ScreenIm/01.jpg", ImageFormat.Jpeg);
        }
 
        public void reloadSystem()
@@ -48,7 +48,7 @@ namespace DegreeWork_01
 
        public void openFolderIm()
        {
-           System.Diagnostics.Process.Start("explorer", "D:\\ScreenIm");
+           System.Diagnostics.Process.Start("explorer", "ScreenIm");
        }
     }
 }

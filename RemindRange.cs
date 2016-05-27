@@ -30,6 +30,11 @@ namespace DegreeWork_01
             remindList.Add(new Remind(remindList.Count(), dateTime, message));
             addRemindsInXml();
         }
+        public RemindRange updateRemindList()
+        {
+            RemindRange listFromXml = xml.readXML("Reminds.xml");
+            return listFromXml;
+        }
 
         public void removeMessage(int id)
         {
