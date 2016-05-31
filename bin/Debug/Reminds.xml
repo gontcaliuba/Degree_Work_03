@@ -4,12 +4,27 @@
     <Remind>
       <id>0</id>
       <dateTime>2016-05-26T19:59:00</dateTime>
-      <message>mewww!!!</message>
+      <message>Напоминание 1</message>
     </Remind>
     <Remind>
       <id>1</id>
       <dateTime>2016-05-26T19:59:00</dateTime>
-      <message>mewww!!!</message>
+      <message>Напоминание 2</message>
+    </Remind>
+    <Remind>
+      <id>2</id>
+      <dateTime>2016-05-26T19:59:00</dateTime>
+      <message>Напоминание 3</message>
+    </Remind>
+    <Remind>
+      <id>3</id>
+      <dateTime>2016-05-26T19:59:00</dateTime>
+      <message>Напоминание 4</message>
+    </Remind>
+    <Remind>
+      <id>4</id>
+      <dateTime>2016-05-26T19:59:00</dateTime>
+      <message>Напоминание 5</message>
     </Remind>
   </remindList>
 </RemindRange>

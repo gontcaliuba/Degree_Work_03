@@ -5,14 +5,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DegreeWork_01
 {
-    public partial class Form1 : Form
+    public partial class ContactsForm : Form
     {
         // WaveIn - поток для записи
         WaveIn waveIn;
@@ -21,17 +19,27 @@ namespace DegreeWork_01
         //Имя файла для записи
         string outputFilename = "01.wav";
         bool isRecording = false;
-
-        public Form1()
+        bool isVideoCall = false;
+        List<ContactSkype> contacts;
+        ContactList contactsList = new ContactList();
+        public ContactsForm(bool isVideo)
         {
+            isVideoCall = isVideo;
             InitializeComponent();
+            contacts = contactsList.getContacts();
+            string contactList = null;
+            for (int i = 0; i < contacts.Count; i++)
+            {
+                contactList += contacts[i].getID().ToString() + "   " + contacts[i].getName() + "\n";
+            }
+            richTextBox1.Text = contactList;
 
-            RemindControl remindChecking = new RemindControl();
+            richTextBox1.KeyDown += Form2_KeyDown;
+            richTextBox1.KeyUp += Form2_KeyUp;
 
-            this.KeyDown += Form1_KeyDown;
-            this.KeyUp += Form1_KeyUp;
+            this.KeyDown += Form2_KeyDown;
+            this.KeyUp += Form2_KeyUp;
         }
-
 
         //Получение данных из входного буфера и обработка полученных с микрофона данных
         void waveIn_DataAvailable(object sender, WaveInEventArgs e)
@@ -74,11 +82,16 @@ namespace DegreeWork_01
         {
             var stream = new MemoryStream(File.ReadAllBytes("01.wav"));
             string result = SpeechRecognizer.WavStreamToGoogle(stream);
-            string command = JsonWorker.Convert(result);
+            int nameId = JsonWorker.getNumber(result);
             Engine eng = new Engine();
-            eng.commandsHandler(command);
+            if (nameId == -1)
+            {
+                return;
+            }
+            // Проверяем, число ли в строке, на выходе значение для intId
+            eng.skypeCalls(isVideoCall, contactsList.getNameById(nameId));
+            this.Close();
         }
-        //Начинаем запись
         private void start()
         {
             isRecording = true;
@@ -112,32 +125,21 @@ namespace DegreeWork_01
                 isRecording = false;
             }
         }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData != Keys.Space) return;
             if (isRecording == true) return;
-            Image myimage = new Bitmap("isRecording.jpg");
+            Image myimage = new Bitmap("isRecording_02.jpg");
             this.BackgroundImage = myimage;
             start();
         }
 
-        void Form1_KeyUp(object sender, KeyEventArgs e)
+        void Form2_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData != Keys.Space) return;
-            Image myimage = new Bitmap("isntRecording.jpg");
+            Image myimage = new Bitmap("isntRecording_02.jpg");
             this.BackgroundImage = myimage;
             stop();
-        }
-
-        private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void свернутьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

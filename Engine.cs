@@ -80,13 +80,13 @@ namespace DegreeWork_01
 
                 case "добавить напоминание":
                     {
-                        Form3 remindsForm = new Form3();
+                        RemindForm remindsForm = new RemindForm();
                         remindsForm.ShowDialog();
                         break;
                     }
                 case "удалить напоминание":
                     {
-                        Form4 remindListForm = new Form4();
+                        ReminListForm remindListForm = new ReminListForm();
                         remindListForm.ShowDialog();
                         break;
                     }
@@ -105,14 +105,14 @@ namespace DegreeWork_01
                 case "позвонить":
                     {
                         skypeControl.startSkype();
-                        Form2 formContacts = new Form2(false);
+                        ContactsForm formContacts = new ContactsForm(false);
                         formContacts.ShowDialog();
                         break;
                     }
                 case "видеозвонок":
                     {
                         skypeControl.startSkype();
-                        Form2 formContacts = new Form2(true);
+                        ContactsForm formContacts = new ContactsForm(true);
                         formContacts.ShowDialog();
                         break;
                     }

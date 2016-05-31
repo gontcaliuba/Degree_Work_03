@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace DegreeWork_01
 {
-    public partial class Form5 : Form
+    public partial class AgreeForm : Form
     {
         Remind remind;
         bool isDeleted = false;
-        public Form5(string textToShow, Remind remind, bool isDeleted)
+        public AgreeForm(string textToShow, Remind remind, bool isDeleted)
         {
             InitializeComponent();
             this.remind = remind;

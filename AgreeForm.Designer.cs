@@ -1,6 +1,6 @@
 ﻿namespace DegreeWork_01
 {
-    partial class Form5
+    partial class AgreeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgreeForm));
             this.textLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 

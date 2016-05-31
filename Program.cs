@@ -20,8 +20,8 @@ namespace DegreeWork_01
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             RemindRange rem = new RemindRange();
-            rem.addMessage(new DateTime(2016, 05, 26, 19, 59, 0), "mewww!!!");
-            Application.Run(new Form1());
+            //rem.addMessage(new DateTime(2016, 05, 26, 19, 59, 0), "Напоминание 5");
+            Application.Run(new MainForm());
         }
     }
 }

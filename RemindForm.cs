@@ -5,14 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace DegreeWork_01
 {
-    public partial class Form4 : Form
+    public partial class RemindForm : Form
     {
         // WaveIn - поток для записи
         WaveIn waveIn;
@@ -20,29 +19,51 @@ namespace DegreeWork_01
         WaveFileWriter writer;
         //Имя файла для записи
         string outputFilename = "01.wav";
-        RemindRange reminds = new RemindRange();
+        RemindRange remindList = new RemindRange();
         bool isRecording = false;
-        public Form4()
+
+        public RemindForm()
         {
             InitializeComponent();
-            setData();
 
-            remindTextBox.KeyDown += Form5_KeyDown;
-            remindTextBox.KeyUp += Form5_KeyUp;
-            this.KeyDown += Form5_KeyDown;
-            this.KeyUp += Form5_KeyUp;
+            Dictionary<int, string> comboSource = new Dictionary<int, string>();
+            comboSource.Add(0, "00:00");
+            comboSource.Add(1, "01:00");
+            comboSource.Add(2, "02:00");
+            comboSource.Add(3, "03:00");
+            comboSource.Add(4, "04:00");
+            comboSource.Add(5, "05:00");
+            comboSource.Add(6, "06:00");
+            comboSource.Add(7, "07:00");
+            comboSource.Add(8, "08:00");
+            comboSource.Add(9, "09:00");
+            comboSource.Add(10, "10:00");
+            comboSource.Add(11, "11:00");
+            comboSource.Add(12, "12:00");
+            comboSource.Add(13, "13:00");
+            comboSource.Add(14, "14:00");
+            comboSource.Add(15, "15:00");
+            comboSource.Add(16, "16:00");
+            comboSource.Add(17, "17:00");
+            comboSource.Add(18, "18:00");
+            comboSource.Add(19, "19:00");
+            comboSource.Add(20, "20:00");
+            comboSource.Add(21, "21:00");
+            comboSource.Add(22, "22:00");
+            comboSource.Add(23, "23:00");
+
+            timeList.DataSource = new BindingSource(comboSource, null);
+            timeList.DisplayMember = "Value";
+            timeList.ValueMember = "Key";
+
+            RemindMessage.KeyDown += Form3_KeyDown;
+            RemindMessage.KeyUp += Form3_KeyUp;
+            dateAndTime.KeyDown += Form3_KeyDown;
+            dateAndTime.KeyUp += Form3_KeyUp;
+            timeList.KeyDown += Form3_KeyDown;
+            timeList.KeyUp += Form3_KeyUp;
         }
 
-        private void setData()
-        {
-            string remindList = null;
-            for (int i = 0; i < reminds.remindList.Count; i++)
-            {
-                remindList += reminds.remindList[i].getId().ToString() + 
-                    "   " + reminds.remindList[i].getMessage() + "\n";
-            }
-            remindTextBox.Text = remindList;
-        }
 
         //Получение данных из входного буфера и обработка полученных с микрофона данных
         void waveIn_DataAvailable(object sender, WaveInEventArgs e)
@@ -77,7 +98,7 @@ namespace DegreeWork_01
                 waveIn = null;
                 writer.Close();
                 writer = null;
-                commandProcessing();                
+                commandProcessing();
             }
         }
 
@@ -85,15 +106,16 @@ namespace DegreeWork_01
         {
             var stream = new MemoryStream(File.ReadAllBytes("01.wav"));
             string result = SpeechRecognizer.WavStreamToGoogle(stream);
-            int remindId = JsonWorker.getNumber(result);
-            if (remindId == -1)
-            {
-                return;
-            }
-            // Проверяем, число ли в строке, на выходе значение для remindId
-            Form5 deleteForm = new Form5("Вы действительно хотите удалить напоминание под номером " + remindId.ToString() + "? \nНажмите Enter для удаления.\nНажмите пробел для отмены.",
-                reminds.getRemindById(remindId), true);
-            deleteForm.ShowDialog();
+            string command = JsonWorker.Convert(result);
+            DateTime dateAndTimeOfRemind = dateAndTime.Value.Date;
+            string timeInStr = timeList.Text.Substring(0, 2);
+            int timeInInt = Int32.Parse(timeInStr);
+            TimeSpan time = new TimeSpan(timeInInt, 0, 0);
+            dateAndTimeOfRemind += time;
+            Remind remind = new Remind(remindList.remindList.Count, dateAndTimeOfRemind, command);
+            setData(remind);
+            AgreeForm saveForm = new AgreeForm("Сохранить напоминание?\nНажмите Enter для сохранения.\nНажмите пробел для отмены.", remind, false);
+            saveForm.ShowDialog();
             this.Close();
         }
         //Начинаем запись
@@ -130,22 +152,32 @@ namespace DegreeWork_01
                 isRecording = false;
             }
         }
+        public void setData(Remind remindToShow)
+        {
+            dateAndTime.Value = remindToShow.getDateTime();
+            RemindMessage.Text = remindToShow.getMessage();
+        }
 
-        private void Form5_KeyDown(object sender, KeyEventArgs e)
+        private void Form3_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData != Keys.Space) return;
             if (isRecording == true) return;
-            Image myimage = new Bitmap("isRecording_04.jpg");
+            Image myimage = new Bitmap("isRecording_03.jpg");
             this.BackgroundImage = myimage;
             start();
         }
 
-        void Form5_KeyUp(object sender, KeyEventArgs e)
+        void Form3_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData != Keys.Space) return;
-            Image myimage = new Bitmap("isntRecording_04.jpg");
+            Image myimage = new Bitmap("isntRecording_03.jpg");
             this.BackgroundImage = myimage;
             stop();
+        }
+
+        private void dateAndTime_ValueChanged(object sender, EventArgs e)
+        {
+            RemindMessage.Focus();
         }
     }
 }

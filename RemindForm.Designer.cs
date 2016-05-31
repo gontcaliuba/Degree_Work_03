@@ -1,6 +1,6 @@
 ﻿namespace DegreeWork_01
 {
-    partial class Form3
+    partial class RemindForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemindForm));
             this.RemindMessage = new System.Windows.Forms.RichTextBox();
             this.dateAndTime = new System.Windows.Forms.DateTimePicker();
             this.timeList = new System.Windows.Forms.ComboBox();
